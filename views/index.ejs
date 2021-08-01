@@ -1,0 +1,34 @@
+<%- include("partials/header") %>
+
+    <div class="container">
+        <header class="jumbotron">
+            <h1>Welcome to Travellers!</h1>
+            <p>View our handpicked places to visit on your next trip!</p>
+            <p>
+                <a class="btn btn-primary btn-large" href="/places/new">Add new place</a>
+            </p>
+        </header>
+
+
+        <div class="row text-center" style="display: flex; flex-wrap: wrap;">
+            <% places.forEach(function(place){ %>
+                <div class="col-md-3 col-sm-6">
+                    <div class="thumbnail">
+                        <img src="<%= place.image %>" alt="">
+                        <div class="caption">
+                            <h4>
+                                <%= place.name %>
+                            </h4>
+                            <!-- <p><%= place.description %></p> -->
+                            <a href="/places/<%= place._id %>" class="btn btn-primary">More Info</a>
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <% }); %>
+            <div>
+        </div>
+
+<%- include("partials/footer") %>
