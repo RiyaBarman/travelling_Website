@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Place = require("../models/place");
 const Comment = require("../models/comment");
-
+const middleware = require("../middleware"); 
 
 /* =============
     places routes
@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 });
 
 
-router.post("/", isLoggedIn, (req, res) => {
+router.post("/", middleware.isLoggedIn, (req, res) => {
 
     // get data from form and add to places array
     let place_name = req.body.place_name;
@@ -55,7 +55,7 @@ router.post("/", isLoggedIn, (req, res) => {
 });
 
 
-router.get("/new", isLoggedIn, (req, res) => {
+router.get("/new", middleware.isLoggedIn, (req, res) => {
     res.render("new");
 })
 
@@ -71,7 +71,7 @@ router.get("/:id", (req, res) => {
 });
 
 // EDIT PLACE ROUTE
-router.get("/:id/edit", checkPlaceAuth, (req, res) => {
+router.get("/:id/edit", middleware.checkPlaceAuth, (req, res) => {
 
     Place.findById(req.params.id, (err, foundPlace) => {
 
@@ -83,7 +83,7 @@ router.get("/:id/edit", checkPlaceAuth, (req, res) => {
 
 
 // UPDATE PLACE ROUTE
-router.put("/:id", checkPlaceAuth, (req, res) => {
+router.put("/:id", middleware.checkPlaceAuth, (req, res) => {
     // find and update the place 
 
     Place.findByIdAndUpdate(req.params.id, req.body.place, (err, updatedPlace) => {
@@ -98,7 +98,7 @@ router.put("/:id", checkPlaceAuth, (req, res) => {
 });
 
 // DESTROY PLACE ROUTE
-router.delete("/:id", checkPlaceAuth, (req, res) => {
+router.delete("/:id", middleware.checkPlaceAuth, (req, res) => {
     Place.findOneAndDelete(req.params.id, (err) => {
         if (err) {
             res.redirect("/places");
@@ -110,36 +110,7 @@ router.delete("/:id", checkPlaceAuth, (req, res) => {
 })
 
 // isLoggedin middleware
-function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated()) {
-        return next();
-    } else {
-        res.redirect("/log-in");
-    }
-}
-
 // CHECK AUTH FOR EDIT AND DELETE
-
-function checkPlaceAuth(req, res, next) {
-    if (req.isAuthenticated()) {
-        Place.findById(req.params.id, (err, foundPlace) => {
-            if (err) {
-                res.redirect("/places");
-            } else {
-                // foundPlace.author.id => Mongoose Object
-                // req.user._id => string
-                // annot use == or  ===
-                if (foundPlace.author.id.equals(req.user._id)) {
-                    next();
-                } else {
-                    res.redirect("back");
-                }
-            }
-        });
-    } else {
-        res.redirect("back");
-    }
-
-}
+// moved to middleware dir
 
 module.exports = router;

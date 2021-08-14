@@ -29,7 +29,7 @@
                             </em>
                         </p>
                         <% if( currentUser && place.author.id.equals(currentUser._id)){ %>
-                            <a class="btn btn-xs btn-warning" href="/places/<%= place._id %>/edit">Edit Place</a>
+                            <a class="btn btn-xs btn-warning" href="/places/<%= place._id %>/edit">Edit Place</a> |
                             <form action="/places/<%= place._id %>?_method=DELETE" method="POST" class="delete-form">
                                 <button class="btn btn-xs btn-danger ">Delete Place</button>
                             </form>
