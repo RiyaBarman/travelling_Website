@@ -1,10 +1,72 @@
-<%- include("partials/header") %>
-    <h1>This is a show template</h1>
-    <p>
-        <%= place.name %>
-    </p>
-    <img src="<%= place.image %>" alt="">
-    <p>
-        <%= place.description %>
-    </p>
- <%- include("partials/footer") %>
+<%- include("./partials/header") %>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <p class="lead"><i class="fab fa-think-peaks"></i></p>
+
+                <div class="list-group">
+                    <li class="list-group-item active">Info 1</li>
+                    <li class="list-group-item ">Info 1</li>
+                    <li class="list-group-item ">Info 1</li>
+
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="thumbnail">
+                    <img class="img-responsive" src="<%= place.image %>" alt="">
+                    <div class="caption-full">
+                        <h4 class="pull-right">Rs.1500/person</h4>
+                        <h4><a>
+                                <%= place.name %>
+                            </a></h4>
+                        <p>
+                            <%= place.description %>
+                        </p>
+                        <p>
+                            <em>
+                                Suggested By : <%= place.author.username %>
+                            </em>
+                        </p>
+                    </div>
+                </div>
+                <% if(currentUser) {%>
+                    <div class="well">
+                        <div class="text-right">
+                            <form action="/places/<%= place._id %>/comments" method="post">
+                                <div style="width: 80%; margin:auto;" class="d-inline-flex flex-wrap">
+                                    <input type="text" name="comment[text]" class="form-control"
+                                        placeholder="Add a new comment...">
+
+                                    <button class="btn btn-success d-flex justify-content-end"
+                                        type="submit">Comment</button>
+                                </div>
+                            </form>
+                        </div>
+                        <hr>
+                        <% place.comments.forEach((comment)=>{ %>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <strong>
+                                        <%= comment.author.username %>
+                                    </strong>
+                                    <span class="pull-right">1 day ago</span>
+                                    <p>
+                                    <div class="container">
+                                        <%= comment.text %>
+                                    </div>
+                                    </p>
+                                </div>
+
+
+                            </div>
+
+                            <% }) %>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include("./partials/footer") %>

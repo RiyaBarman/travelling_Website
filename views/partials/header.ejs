@@ -9,6 +9,7 @@
     <script src="https://kit.fontawesome.com/201d45f558.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="app.css"> -->
     <title>Travellers</title>
+    <link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 
 <body>
@@ -21,9 +22,15 @@
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Login</a></li>
-                    <li><a href="/">Sign Up</a></li>
-                    <li><a href="/">Logout</a></li>
+                    <% if(!currentUser){ %>
+                        <li><a href="/log-in">Login</a></li>
+                        <li><a href="/sign-up">Sign Up</a></li>
+                    <% }else{%>
+                        <li><a href="#">
+                                <%=currentUser.username%>
+                            </a></li>
+                        <li><a href="/log-out">Logout</a></li>
+                    <%}%>
                 </ul>
             </div>
 
