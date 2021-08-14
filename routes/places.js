@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Place = require("../models/place");
-const Comment = require("../models/comment"); 
+const Comment = require("../models/comment");
 
 
 /* =============
     places routes
    =============*/
 
-   router.get("/", (req, res) => {
+router.get("/", (req, res) => {
     // Get all places from db 
     Place.find({}, (err, allPlaces) => {
         if (err) {
@@ -38,7 +38,7 @@ router.post("/", isLoggedIn, (req, res) => {
         author: author
     }
 
-    
+
     // console.log(newPlace);
     // Create newplace and save to db
     Place.create(newPlace, (err, newlyCreated) => {
@@ -70,12 +70,76 @@ router.get("/:id", (req, res) => {
     });
 });
 
+// EDIT PLACE ROUTE
+router.get("/:id/edit", checkPlaceAuth, (req, res) => {
+
+    Place.findById(req.params.id, (err, foundPlace) => {
+
+        res.render("places/edit", { place: foundPlace });
+
+    });
+
+});
+
+
+// UPDATE PLACE ROUTE
+router.put("/:id", checkPlaceAuth, (req, res) => {
+    // find and update the place 
+
+    Place.findByIdAndUpdate(req.params.id, req.body.place, (err, updatedPlace) => {
+        if (err) {
+            res.redirect("/places");
+        } else {
+            // redirect to the show page
+            res.redirect("/places/" + req.params.id);
+        }
+    });
+
+});
+
+// DESTROY PLACE ROUTE
+router.delete("/:id", checkPlaceAuth, (req, res) => {
+    Place.findOneAndDelete(req.params.id, (err) => {
+        if (err) {
+            res.redirect("/places");
+        } else {
+            res.redirect("/places");
+        }
+    })
+
+})
+
 // isLoggedin middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated()) {
         return next();
-    }else{
+    } else {
         res.redirect("/log-in");
     }
 }
+
+// CHECK AUTH FOR EDIT AND DELETE
+
+function checkPlaceAuth(req, res, next) {
+    if (req.isAuthenticated()) {
+        Place.findById(req.params.id, (err, foundPlace) => {
+            if (err) {
+                res.redirect("/places");
+            } else {
+                // foundPlace.author.id => Mongoose Object
+                // req.user._id => string
+                // annot use == or  ===
+                if (foundPlace.author.id.equals(req.user._id)) {
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        });
+    } else {
+        res.redirect("back");
+    }
+
+}
+
 module.exports = router;

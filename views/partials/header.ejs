@@ -9,6 +9,8 @@
     <script src="https://kit.fontawesome.com/201d45f558.js" crossorigin="anonymous"></script>
     <!-- <link rel="stylesheet" href="app.css"> -->
     <title>Travellers</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/stylesheets/app.css">
 </head>
 
@@ -25,12 +27,12 @@
                     <% if(!currentUser){ %>
                         <li><a href="/log-in">Login</a></li>
                         <li><a href="/sign-up">Sign Up</a></li>
-                    <% }else{%>
-                        <li><a href="#">
-                                <%=currentUser.username%>
-                            </a></li>
-                        <li><a href="/log-out">Logout</a></li>
-                    <%}%>
+                        <% }else{%>
+                            <li><a href="#">
+                                    <%=currentUser.username%>
+                                </a></li>
+                            <li><a href="/log-out">Logout</a></li>
+                            <%}%>
                 </ul>
             </div>
 

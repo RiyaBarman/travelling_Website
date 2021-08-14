@@ -1,0 +1,32 @@
+
+
+<%- include("../partials/header") %>
+
+    <div class="container">
+        <div class="row">
+            <h2 style="text-align: center;">Edit <%= place.name %></h2>
+            <div style="width: 30%; margin: 25px auto">
+                <form action="/places/<%= place._id %>?_method=PUT" method="post">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="place[name]" placeholder="Name of the Place" value="<%= place.name %>">
+                    </div>
+
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="place[image]" id="" placeholder="image url"  value="<%= place.image %>">
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="place[description]" id="" placeholder="Description about place"  value="<%= place.description %>">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Submit!</button>
+                    </div>
+
+                </form>
+                <a href="/places"> Go back!</a>
+            </div>
+        </div>
+
+    </div>
+
+
+    <%- include("../partials/footer") %>

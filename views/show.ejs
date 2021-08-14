@@ -28,6 +28,12 @@
                                 Suggested By : <%= place.author.username %>
                             </em>
                         </p>
+                        <% if( currentUser && place.author.id.equals(currentUser._id)){ %>
+                            <a class="btn btn-xs btn-warning" href="/places/<%= place._id %>/edit">Edit Place</a>
+                            <form action="/places/<%= place._id %>?_method=DELETE" method="POST" class="delete-form">
+                                <button class="btn btn-xs btn-danger ">Delete Place</button>
+                            </form>
+                            <% } %>
                     </div>
                 </div>
                 <% if(currentUser) {%>
@@ -56,17 +62,42 @@
                                         <%= comment.text %>
                                     </div>
                                     </p>
+
+                                    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                        <a id="edit-btn" class="btn btn-xs btn-warning ">Edit</a> |
+                                        <form action="/places/<%= place._id %>/comments/<%=comment._id%>?_method=delete"
+                                            method="POST" class="delete-form">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                        </form>
+
+
+
+                                        <div id="edit-form" class="text-right">
+                                            <form
+                                                action="/places/<%= place._id %>/comments/<%= comment._id %>?_method=PUT"
+                                                method="post">
+                                                <div style="width: 80%; margin:auto;" class="d-inline-flex flex-wrap">
+                                                    <input type="text" name="comment[text]" class="form-control"
+                                                        value="<%= comment.text %>" placeholder="Add a new comment...">
+
+                                                    <button class="btn btn-success d-flex justify-content-end"
+                                                        type="submit">Publish Comment</button>
+                                                </div>
+                                            </form>
+                                        </div>
+
+
+                                        <%}%>
+
+
                                 </div>
 
-
+                                <% }) %>
                             </div>
-
-                            <% }) %>
+                            <% } %>
                     </div>
-                    <% } %>
             </div>
         </div>
-    </div>
 
 
-    <%- include("./partials/footer") %>
+        <%- include("./partials/footer") %>
