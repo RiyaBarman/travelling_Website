@@ -6,4 +6,6 @@ This application lets user create a place, create comments, giving description a
 User who creates a place or comment have complete authorization to create or delete that place or comment.
 People can also review the places for other fellow travellers.
 
-<iframe src="https://giphy.com/embed/y6WDVCyt12TBV1ekiN" width="480" height="258" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/y6WDVCyt12TBV1ekiN">via GIPHY</a></p>
+
+![Animated GIF-source](https://user-images.githubusercontent.com/65938639/129485147-3cb29fd2-2697-401c-bdea-0ba243a2e3e0.gif)
+
