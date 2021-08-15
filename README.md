@@ -14,5 +14,5 @@ People can also review the places for other fellow travellers.
 
 ![image](https://user-images.githubusercontent.com/65938639/129485233-44b7194d-1d12-4c0a-941c-52bea7c0e4c4.png)
 
-To run the code, go to the file directory travellers & # npm start
+To run the code, go to the file directory travellers and do npm start.
 
