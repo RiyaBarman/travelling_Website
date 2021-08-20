@@ -1,8 +1,99 @@
 <%- include("partials/header") %>
+    <section class="zoom">
+        <img src="/assets/mountain1.png" id="layer1" alt="">
+        <img src="/assets/mountain2.png" id="layer2" alt="">
+        <img src="/assets/text.png" id="text" alt="">
 
-<h1>Landing page</h1>
-<p>Welcome</p>
+    </section>
+    <section id="about-section">
+        <div id="about" class="container row text-center">
 
-<a href="/places">View Some places to visit</a>
+            <h1>Welcome to the travellers!!!</h1>
 
-<%- include("partials/footer") %>
+            <a href="/places" class="btn btn-lg btn-primary"> View some places to visit
+            </a>
+
+            <h1>About Us!</h1>
+            <p>We all are just travellers & we want to let other travellers know where to travel by our
+                handpicked places to visit.
+                Also, this will help others to construct their budget for travelling.❤
+            </p>
+
+        </div>
+    </section>
+
+    <section id="contact">
+        <h1 class="section-heading mb-75px">
+            <span><i class="far fa-id-card"></i></span>
+            <span>Contact </span>
+        </h1>
+
+        <div id="contact-container">
+            <div id="contact-form">
+                <form action="" method="GET">
+                    <div>
+                        <input type="text" name="Username" placeholder="Your Name">
+                    </div>
+                    <div>
+                        <input id="input-msg" type="email" name="User-mail" required placeholder="Your E-mail">
+                    </div>
+                    <div>
+                        <textarea name="message" rows="2" cols="40" placeholder="Write your message"></textarea>
+                    </div>
+                    <!-- <span><i class="fas fa-comment-alt"></i></span> -->
+                    <button class="Sub-btn">SEND MESSAGE</button>
+                </form>
+
+            </div>
+
+            <aside id="address-container">
+                <div>
+                    <h3 class="address-heading">
+                        Get In touch </h3>
+                    <p>You can connect us with mail also.
+                        Do mail us on <em>iamtraveller@travel.ac.in</em>
+                    </p>
+
+                </div>
+                <div>
+                    <h3 class="address-heading">My Address</h3>
+                    <div>
+                        <span> <i class="fas fa-map-marker-alt"></i></span>
+                        <span> Gurgaon, India</span>
+                    </div>
+                    <div>
+                        <span><i class="fas fa-mobile-alt"></i></span>
+                        <span> +91 - 9999999999 </span>
+                    </div>
+                    <div>
+                        <span><i class="fas fa-envelope"></i></span>
+                        <span>travellers.info@travel.ac.in</span>
+                    </div>
+
+                </div>
+
+
+            </aside>
+            <div id="social-icons-bottom">
+                <ul class=" social-icons horizontal-list text-center">
+                    <li><a href="https://www.linkedin.com/in/kunal-verma-a08b18169/" target="_blank"><i
+                                class="fab fa-linkedin-in"></i>
+                        </a></li>
+                    <li><a href="https://github.com/Heisenberg27074" target="_blank"><i
+                                class="fab fa-instagram"></i></a></li>
+
+                    <li><a href="https://www.facebook.com/profile.php?id=100005069829665" target="_blank"><i
+                                class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="kunal.ic.18@nitj.ac.in" target="_blank"><i class="fab fa-google-plus-g"></i></a>
+                    </li>
+                    <!-- <li><a href="https://auth.geeksforgeeks.org/user/__heisenberg__/practice/target=" _blank""><i
+                                class="fab fa-stack-overflow"></i></a></li> -->
+                </ul>
+
+            </div>
+        </div>
+
+
+    </section>
+
+    <%- include("partials/footer") %>

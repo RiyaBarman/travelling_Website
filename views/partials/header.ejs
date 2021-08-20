@@ -11,11 +11,16 @@
     <title>Travellers</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Style+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/app.css">
+    <link rel="stylesheet" href="/stylesheets/landing.css">
 </head>
 
-<body>
-    <nav class="navbar navbar-default">
+<body >
+    <nav class="navbar navbar-dark" style="background-color: #f8f8f8; width: 100%;">
         <div class="container-fluid">
             <div class="navbar-header">
                 <a class="navbar-brand" href="/">
@@ -39,3 +44,21 @@
         </div>
 
     </nav>
+
+    <div class="container">
+        <% if(error && error.length> 0) {%>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <%}%>
+                <% if(success && success.length>0) {%>
+                    <div class="alert alert-success" role="alert">
+                        <%= success %>
+                    </div>
+                    <%}%>
+                        <% if(warning && warning.length>0) {%>
+                            <div class="alert alert-warning" role="alert">
+                                <%= warning %>
+                            </div>
+                            <%}%>
+    </div>

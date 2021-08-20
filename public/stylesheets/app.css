@@ -10,3 +10,13 @@
 .delete-form{
     display: inline;
 }
+.row{
+    margin-left: 0px;
+}
+body{
+    width:90%;
+}
+nav{
+    padding: 0;
+    margin:0;
+}

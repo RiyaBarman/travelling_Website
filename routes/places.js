@@ -27,6 +27,7 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
     let place_name = req.body.place_name;
     let image = req.body.image;
     let desc = req.body.description;
+    let price = req.body.price;
     let author = {
         id: req.user._id,
         username: req.user.username
@@ -35,7 +36,8 @@ router.post("/", middleware.isLoggedIn, (req, res) => {
         name: place_name,
         image: image,
         description: desc,
-        author: author
+        author: author,
+        price: price
     }
 
 
@@ -88,9 +90,11 @@ router.put("/:id", middleware.checkPlaceAuth, (req, res) => {
 
     Place.findByIdAndUpdate(req.params.id, req.body.place, (err, updatedPlace) => {
         if (err) {
+            req.flash("error", "Something went wrong!");
             res.redirect("/places");
         } else {
             // redirect to the show page
+            req.flash("success", "Your place updated successfully!");
             res.redirect("/places/" + req.params.id);
         }
     });
@@ -101,8 +105,10 @@ router.put("/:id", middleware.checkPlaceAuth, (req, res) => {
 router.delete("/:id", middleware.checkPlaceAuth, (req, res) => {
     Place.findOneAndDelete(req.params.id, (err) => {
         if (err) {
+            req.flash("error", "Something went wrong!");
             res.redirect("/places");
         } else {
+            req.flash("success", "Place deleted successfully!");
             res.redirect("/places");
         }
     })
